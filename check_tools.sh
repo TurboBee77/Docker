@@ -25,7 +25,23 @@ for pkg in "${packages[@]}"; do
 		fi 
 
 	else
-		echo "$pkg jus jest zainstalowany"
+		echo "$pkg juz jest zainstalowany"
 
 	fi
 done
+
+
+	if command -v docker >/dev/null 2>&1; then
+		echo "Docker jest zainstalowany i dziala.."
+	else
+		read -p "czy zainstalowac ? (t/n): " answer
+		
+		if [["$answer" == "t" || "$answer" == "T"]]; then
+                        echo "Instaluje Docker..."
+                        curl -fsSL https://get.docker.com -o get-docker.sh
+                	sudo sh get-docker.sh
+			sudo usermod -aG docker $USER
+		else
+                        echo "Pomijam instalacje Docker"
+                fi
+	fi
