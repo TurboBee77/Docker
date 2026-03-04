@@ -11,7 +11,7 @@ jq
 )
 
 echo "Sprawdzam ktore narzedzia sa zainstalowane..."
-
+sudo apt update
 for pkg in "${packages[@]}"; do
 	if ! command -v "$pkg" >/dev/null 2>&1; then
 		echo "Nie znalzalem $pkg ..."
