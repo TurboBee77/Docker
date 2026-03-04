@@ -11,15 +11,15 @@ jq
 )
 
 echo "Sprawdzam ktore narzedzia sa zainstalowane..."
-sudo apt update
+apt update
 for pkg in "${packages[@]}"; do
 	if ! command -v "$pkg" >/dev/null 2>&1; then
 		echo "Nie znalzalem $pkg ..."
 		read -p "Czy zainstalowac $pkg ? (t/n): " answer
 
-		if [["$answer" == "t" || "$answer" == "T"]]; then
+		if [[ "$answer" == "t" || "$answer" == "T" ]]; then
 			echo "Instaluje $pkg..."
-			sudo apt install -y "$pkg"
+			apt install -y "$pkg"
 		else
 			echo "Pomijam $pkg"
 		fi 
@@ -34,13 +34,13 @@ done
 	if command -v docker >/dev/null 2>&1; then
 		echo "Docker jest zainstalowany i dziala.."
 	else
-		read -p "czy zainstalowac ? (t/n): " answer
+		read -p "Docker czy zainstalowac ? (t/n): " answer
 		
-		if [["$answer" == "t" || "$answer" == "T"]]; then
+		if [[ "$answer" == "t" || "$answer" == "T" ]]; then
                         echo "Instaluje Docker..."
                         curl -fsSL https://get.docker.com -o get-docker.sh
-                	sudo sh get-docker.sh
-			sudo usermod -aG docker $USER
+                	sh get-docker.sh
+			usermod -aG docker $USER
 		else
                         echo "Pomijam instalacje Docker"
                 fi

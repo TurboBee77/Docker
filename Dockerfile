@@ -1,4 +1,4 @@
-FORM ubuntu: 22.04
+FROM ubuntu:22.04
 
 COPY check_tools.sh /check_tools.sh
 
